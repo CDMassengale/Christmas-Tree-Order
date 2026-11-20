@@ -1,0 +1,116 @@
+//Caleb Massengale
+//This is my work
+//ITI2400 - 8th December 2023
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+public class JChristmasTree extends JFrame
+{
+    private final JCheckBox nobleCheckBox, nordmannCheckBox, balsamHillCheckBox, pickupCheckBox, deliveryCheckBox;
+    private final JTextField resultTextField;
+    public JChristmasTree()
+    {
+        setTitle("Christmas Tree Order");
+        setSize(400, 200);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        nobleCheckBox = new JCheckBox("Noble Fir ($199.00)");
+        nordmannCheckBox = new JCheckBox("Nordmann Fir ($150.00)");
+        balsamHillCheckBox = new JCheckBox("Balsam Hill Fir ($400.00)");
+        pickupCheckBox = new JCheckBox("Pickup ($50.00)");
+        deliveryCheckBox = new JCheckBox("Local Delivery ($120.00)");
+        ButtonGroup treeGroup = new ButtonGroup();
+        treeGroup.add(nobleCheckBox);
+        treeGroup.add(nordmannCheckBox);
+        treeGroup.add(balsamHillCheckBox);
+        resultTextField = new JTextField();
+        resultTextField.setEditable(false);
+        setupCheckBoxListeners();
+        setLayout(new GridLayout(3, 2));
+        add(nobleCheckBox);
+        add(nordmannCheckBox);
+        add(balsamHillCheckBox);
+        add(pickupCheckBox);
+        add(deliveryCheckBox);
+        add(resultTextField);
+        setVisible(true);
+    }
+    private void setupCheckBoxListeners()
+    {
+        nobleCheckBox.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                updateResult();
+            }
+        });
+        nordmannCheckBox.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                updateResult();
+            }
+        });
+        balsamHillCheckBox.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                updateResult();
+            }
+        });
+        pickupCheckBox.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                updateResult();
+            }
+        });
+        deliveryCheckBox.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                updateResult();
+            }
+        });
+    }
+    private void updateResult()
+    {
+        StringBuilder result = new StringBuilder();
+
+        if (nobleCheckBox.isSelected())
+        {
+            result.append("Noble Fir ($199.00)");
+        } else if (nordmannCheckBox.isSelected())
+        {
+            result.append("Nordmann Fir ($150.00)");
+        } else if (balsamHillCheckBox.isSelected())
+        {
+            result.append("Balsam Hill Fir ($400.00)");
+        }
+        result.append(" | ");
+        if (pickupCheckBox.isSelected())
+        {
+            result.append("Pickup ($50.00)");
+        } else if (deliveryCheckBox.isSelected())
+        {
+            result.append("Local Delivery ($120.00)");
+        }
+
+        resultTextField.setText(result.toString());
+    }
+    public static void main(String[] args)
+    {
+        SwingUtilities.invokeLater(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                new JChristmasTree();
+            }
+        });
+    }
+}
